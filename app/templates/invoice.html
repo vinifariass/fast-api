@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            color: #333;
+            padding: 40px;
+            background: #fff;
+        }
+        
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2563eb;
+        }
+        
+        .company-info h1 {
+            font-size: 28px;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        
+        .company-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .invoice-details {
+            text-align: right;
+        }
+        
+        .invoice-details h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .invoice-number {
+            font-size: 16px;
+            color: #666;
+            background: #f3f4f6;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .billing-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .billing-box {
+            width: 45%;
+        }
+        
+        .billing-box h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .billing-box p {
+            line-height: 1.8;
+        }
+        
+        .billing-box .name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        thead {
+            background: #2563eb;
+            color: white;
+        }
+        
+        th {
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        th:last-child, td:last-child {
+            text-align: right;
+        }
+        
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .totals {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 40px;
+        }
+        
+        .totals-box {
+            width: 300px;
+        }
+        
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .totals-row.total {
+            border-bottom: none;
+            background: #2563eb;
+            color: white;
+            margin-top: 10px;
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .notes {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .notes h4 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .notes p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-header">
+        <div class="company-info">
+            <h1>{{ company_name }}</h1>
+            <p>{{ company_address }}</p>
+        </div>
+        <div class="invoice-details">
+            <h2>INVOICE</h2>
+            <span class="invoice-number">#{{ invoice_number }}</span>
+        </div>
+    </div>
+    
+    <div class="billing-section">
+        <div class="billing-box">
+            <h3>Bill To</h3>
+            <p class="name">{{ client_name }}</p>
+            <p>{{ client_address }}</p>
+        </div>
+        <div class="billing-box">
+            <h3>Invoice Info</h3>
+            <p><strong>Invoice Number:</strong> {{ invoice_number }}</p>
+            <p><strong>Currency:</strong> {{ currency }}</p>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ currency }} {{ "%.2f"|format(item.price) }}</td>
+                <td>{{ currency }} {{ "%.2f"|format(item.quantity * item.price) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="totals">
+        <div class="totals-box">
+            <div class="totals-row">
+                <span>Subtotal</span>
+                <span>{{ currency }} {{ "%.2f"|format(subtotal) }}</span>
+            </div>
+            <div class="totals-row total">
+                <span>Total</span>
+                <span>{{ currency }} {{ "%.2f"|format(total) }}</span>
+            </div>
+        </div>
+    </div>
+    
+    {% if notes %}
+    <div class="notes">
+        <h4>Notes</h4>
+        <p>{{ notes }}</p>
+    </div>
+    {% endif %}
+    
+    <div class="footer">
+        <p>Thank you for your business!</p>
+    </div>
+</body>
+</html>
