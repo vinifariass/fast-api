@@ -1,14 +1,5 @@
 FROM python:3.11-slim
 
-# Install WeasyPrint dependencies
-RUN apt-get update && apt-get install -y \
-    libpango-1.0-0 \
-    libpangocairo-1.0-0 \
-    libgdk-pixbuf2.0-0 \
-    libffi-dev \
-    shared-mime-info \
-    && rm -rf /var/lib/apt/lists/*
-
 # Set working directory
 WORKDIR /app
 
