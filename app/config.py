@@ -18,20 +18,25 @@ API_DESCRIPTION = """
 ## Features
 
 * **HTML → PDF**: Convert any HTML code to PDF
-* **URL → PDF**: Capture web pages as PDF
-* **Invoices**: Generate professional invoices and receipts
+* **URL → PDF**: Capture web pages as PDF  
+* **Invoices**: Generate professional invoices and receipts (exclusive feature!)
 
-## Usage
+## Why Choose Us?
 
-All endpoints return the PDF file directly for download.
+✅ **30% cheaper** than competitors  
+✅ **Ready-to-use invoice templates** (others don't have this!)  
+✅ **Simple pricing** - no confusing credit system  
+✅ **Fast response** - powered by modern infrastructure
 
 ## Pricing
 
-| Plan | Price | PDFs/month |
-|------|-------|------------|
-| Free | $0 | 10 |
-| Basic | $5 | 100 |
-| Pro | $15 | 500 |
-| Business | $50 | 5000 |
+| Plan | Price | PDFs/month | Cost per PDF |
+|------|-------|------------|--------------|
+| **Free** | $0 | 50 | - |
+| **Basic** | $5 | 200 | $0.025 |
+| **Pro** | $12 | 1,000 | $0.012 |
+| **Business** | $29 | 5,000 | $0.006 |
+
+💰 **Save 30%** compared to Api2Pdf and other alternatives!
 """
 API_VERSION = "1.0.0"

@@ -1,27 +1,43 @@
 # PDF Generator API
 
-A RESTful API for generating professional PDFs from HTML, URLs, and templates.
+🔥 A powerful, affordable API for generating professional PDFs from HTML, URLs, and templates.
+
+## ✨ Why Choose This API?
+
+- ✅ **30% cheaper** than competitors (Api2Pdf, PDF.co)
+- ✅ **Ready-to-use invoice templates** - exclusive feature!
+- ✅ **Simple pricing** - no confusing credit system
+- ✅ **Fast & reliable** - modern infrastructure
+
+---
+
+## 💰 Pricing
+
+| Plan | Price | PDFs/month | Cost per PDF |
+|------|-------|------------|--------------|
+| **Free** | $0 | 50 | - |
+| **Basic** | $5 | 200 | $0.025 |
+| **Pro** | $12 | 1,000 | $0.012 |
+| **Business** | $29 | 5,000 | $0.006 |
+
+---
 
 ## 🚀 Quick Start
 
-### 1. Create virtual environment
+### Installation
 ```bash
 python -m venv venv
-venv\Scripts\activate  # Windows
-# source venv/bin/activate  # Linux/Mac
-```
-
-### 2. Install dependencies
-```bash
+source venv/bin/activate  # Linux/Mac
+# venv\Scripts\activate   # Windows
 pip install -r requirements.txt
 ```
 
-### 3. Run the API
+### Run
 ```bash
 uvicorn app.main:app --reload
 ```
 
-### 4. Access documentation
+### Documentation
 Open: http://localhost:8000/docs
 
 ---
@@ -31,7 +47,6 @@ Open: http://localhost:8000/docs
 ### POST /pdf/from-html
 Converts HTML to PDF.
 
-**Request:**
 ```json
 {
   "html_content": "<h1>Hello World</h1><p>This is a PDF</p>",
@@ -39,14 +54,9 @@ Converts HTML to PDF.
 }
 ```
 
-**Response:** PDF file download
-
----
-
 ### POST /pdf/from-url
 Captures a webpage as PDF.
 
-**Request:**
 ```json
 {
   "url": "https://example.com",
@@ -54,46 +64,28 @@ Captures a webpage as PDF.
 }
 ```
 
-**Response:** PDF file download
-
----
-
 ### POST /pdf/invoice
 Generates a professional invoice.
 
-**Request:**
 ```json
 {
   "invoice_number": "INV-001",
   "company_name": "My Company",
-  "company_address": "123 Business Street, City, Country",
+  "company_address": "123 Business Street",
   "client_name": "Client ABC",
-  "client_address": "456 Client Avenue, Town, Country",
+  "client_address": "456 Client Avenue",
   "items": [
     {"description": "Web Development", "quantity": 1, "price": 500.00},
-    {"description": "Consulting Hours", "quantity": 10, "price": 50.00}
+    {"description": "Consulting", "quantity": 10, "price": 50.00}
   ],
   "currency": "USD",
   "notes": "Payment due within 30 days."
 }
 ```
 
-**Response:** Invoice PDF file download
-
 ---
 
-## 💰 Pricing Plans
-
-| Plan | Price | PDFs/month |
-|------|-------|------------|
-| Free | $0 | 10 |
-| Basic | $5 | 100 |
-| Pro | $15 | 500 |
-| Business | $50 | 5000 |
-
----
-
-## 🐳 Deploy with Docker
+## 🐳 Deploy
 
 ```bash
 docker build -t pdf-api .
